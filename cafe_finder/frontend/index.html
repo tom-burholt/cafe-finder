@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Porteño Café Finder</title>    
+    <style>
+    </style>
+</head>
+<body>
+
+    <h1>Boludo Cafe Finder</h1>
+
+    <div class="buttonbar">
+    <button id="search-btn">Search</button>
+    <button id="sort-btn">Sort by Name</button>
+    <button id="sort-btn-barrio">Sort by Barrio</button>
+    <button id="sort-btn-rating">Sort by Rating</button>
+    <!-- This is the placeholder where our cafes will be injected -->
+    </div>
+
+    <div id="cafe-list">
+        <p>Loading cafes...</p>
+    </div>
+
+    <script>
+    const cafeListDiv = document.getElementById('cafe-list');
+    let allCafes = [];
+
+    // renderCafes now lives at the top level, accessible everywhere below
+    function renderCafes(cafesToRender) {
+        cafeListDiv.innerHTML = ''; // Clear existing content
+
+        for (const cafe of cafesToRender) {
+            const cafeHTML = `
+                <div class="cafe-card" id='${cafe.id}'>
+                    <h2>${cafe.name}</h2>
+                    <p>Barrio: ${cafe.barrio}</p>
+                    <p>Rating: ${cafe.rating} / 5</p>
+                </div>`;
+
+            cafeListDiv.insertAdjacentHTML('beforeend', cafeHTML);
+
+        const dialog = document.createElement('dialog')
+        dialog.id=`dialog-${cafe.id}`
+        dialog.innerHTML = `
+            <h2>${cafe.name}</h2>
+            <p>Barrio: ${cafe.barrio}</p>
+            <p>Address: ${cafe.address}</p>`
+
+        const infocard = document.getElementById(`${cafe.id}`);
+        infocard.addEventListener('click', () => {
+            dialog.showModal();
+    
+        });
+        
+        cafeListDiv.appendChild(dialog)
+
+        }
+    }
+
+    async function getCafes() {
+        const response = await fetch('http://localhost:8000/api/cafes/');
+        allCafes = await response.json();
+        renderCafes(allCafes);
+    }
+
+    const sortBtn = document.getElementById('sort-btn');
+
+    sortBtn.addEventListener('click', () => {
+        const sortedCafes = [...allCafes].sort((a, b) => a.name.localeCompare(b.name));
+        renderCafes(sortedCafes);
+    });
+
+    const sortBtn2 = document.getElementById('sort-btn-barrio');
+
+    sortBtn2.addEventListener('click', () => {
+        const sortedCafes = [...allCafes].sort((a, b) => a.barrio.localeCompare(b.barrio));
+        renderCafes(sortedCafes);
+    });
+
+    const sortBtn3 = document.getElementById('sort-btn-rating');
+
+    sortBtn3.addEventListener('click', () => {
+        const sortedCafes = [...allCafes].sort((a,b) => b.rating - a.rating)
+        renderCafes(sortedCafes);
+    });
+    
+    getCafes();
+
+
+
+</script>
+
+</body>
+</html>
