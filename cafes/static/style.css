@@ -1,0 +1,62 @@
+body { 
+    font-family: serif; 
+    max-width: 800px; 
+    margin: 2rem auto; 
+    background-color: rgb(255, 255, 255);}
+
+h1{display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    text-align: center;
+    font-family: serif;
+    font-size: 50px;
+    margin: 5vh auto;}
+
+.buttonbar{display: flex; justify-content: center; gap: 0.5rem;}
+
+button{
+        border-width: 1px;
+        background-color: rgb(249, 249, 255);
+        border-color: rgb(25, 25, 76);
+        padding: 5px 20px 5px 20px;
+        border-radius: 10px;
+        margin-bottom: 25px;}
+
+button:hover{
+        border-width: 1px;
+        background-color: rgb(25, 25, 76);
+        border-color: rgb(25, 25, 76);
+        padding: 5px 20px 5px 20px;
+        border-radius: 10px;
+        color: white;
+        transition: 0.3s;}
+
+.cafe-card {
+    font-family: serif;
+    align-items: center;
+    width: 20vw;    
+    border: 1px solid;
+    border-color: rgb(25, 25, 76); 
+    padding: 1rem; 
+    margin-bottom: 1rem; 
+    border-radius: 2rem;
+    transition: 0.3s;}  
+
+.cafe-card:hover { 
+    font-family: serif;
+    background-color: #f8f8f8;
+    border: 1px solid #ccc;
+    border-color: rgb(6, 6, 33); 
+    padding: 1rem; 
+    margin-bottom: 1rem; 
+    border-radius: 0.6rem;
+    animation-duration: 0.2s;
+    transition: 0.3s;
+    scale: 1.05;}
+
+#cafe-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
