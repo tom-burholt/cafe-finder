@@ -9,7 +9,7 @@ from .serializers import CafeSerializer, BarrioSerializer, ReviewerSerializer, R
 class CafeViewSet(viewsets.ModelViewSet):
         
     serializer_class = CafeSerializer
-    queryset = Cafe.objects.all().order_by("-rating")
+    queryset = Cafe.objects.all()
     
     @action(detail=True, methods=['post'])
     def recommend(self, request, pk):
