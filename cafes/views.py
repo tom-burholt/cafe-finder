@@ -5,6 +5,7 @@ from rest_framework.decorators import api_view, action
 from rest_framework.response import Response
 from .models import Cafe, Barrio, Reviewer, Review
 from .serializers import CafeSerializer, BarrioSerializer, ReviewerSerializer, ReviewSerializer
+from cafes import utils
 
 class CafeViewSet(viewsets.ModelViewSet):
         
@@ -28,6 +29,10 @@ class CafeViewSet(viewsets.ModelViewSet):
         cafes = Cafe.objects.filter(rating=5) 
         serializer = self.get_serializer(cafes, many=True) 
         return Response(serializer.data)
+
+    def perform_create(self, serializer):
+        cafe = serializer.save()
+        utils.send_new_cafe_notification(cafe.name)
 
 
 class BarrioViewSet(viewsets.ReadOnlyModelViewSet):

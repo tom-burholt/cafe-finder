@@ -1,4 +1,6 @@
 import pytest
+from unittest.mock import patch
+from cafes import utils
 
 # This test doesn't need the DB, it's just checking the fixture works.
 def test_client_fixture_exists(client):
@@ -29,8 +31,32 @@ def test_create_cafe_via_api(client, make_barrio):
     # ASSERT
     # 4. Check the response.status_code is 201
     assert response.status_code == 201
-
     # 5. Check response.data["name"] is correct
-
-
     # 6. Check Cafe.objects.count() is 1 (proves DB write)
+
+@pytest.mark.django_db
+def test_create_cafe_sends_notification(client, make_barrio):
+    # --- ARRANGE ---
+# 1. Use your fixture to create a barrio object.
+    barrio = make_barrio()
+# 2. Create a dictionary payload for a new cafe.
+    payload = {'name':'New Cafe','address': '123 street', 'barrio_name':barrio.name}
+
+# --- ACT & ASSERT ---
+# 3. Open a 'with patch(...)' block.
+    with patch('cafes.utils.send_new_cafe_notification') as mock_send_notification: 
+        response = client.post(path="/api/cafes/", data=payload)
+        assert response.status_code == 201
+        mock_send_notification.assert_called_once()
+        mock_send_notification.assert_called_once_with('New Cafe')
+
+#    - Use the correct path from the previous slide.
+#    - Assign the mock to a variable, e.g., 'as mock_send_notification'.
+
+# 4. INSIDE THE 'WITH' BLOCK:
+    # a. Use the client to POST your payload to the "/cafes/" URL.
+
+    # b. Assert the response status code is 201 (Created).
+    
+    # c. Assert that your mock was called exactly one time.
+    # d. (Bonus) Assert that your mock was called with the correct cafe name.
