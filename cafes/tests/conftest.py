@@ -2,6 +2,13 @@ import pytest
 from cafes.models import Barrio, Cafe, Reviewer, Review
 # Don't forget imports! (pytest, Barrio model)
 
+from rest_framework.test import APIClient
+
+@pytest.fixture
+def client():
+    return APIClient()
+
+
 @pytest.fixture
 def make_barrio():
     # 1. Define an inner function that accepts **kwargs
