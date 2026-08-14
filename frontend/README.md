@@ -1,4 +1,4 @@
-# vuetify-projectfrontend
+# frontend
 
 Scaffolded with Vuetify CLI.
 
@@ -13,19 +13,19 @@ Scaffolded with Vuetify CLI.
 
 - Framework: Vue 3 + Vite
 - UI Library: Vuetify
-- Language: TypeScript
+- Language: JavaScript
 - Package manager: yarn
 
 ## 🧭 Start Here
 
-- Main entry: `src/main.ts`
+- Main entry: `src/main.js`
 - Main app component: `src/App.vue`
 - Main styles: `src/styles/`
 - Plugin setup: `src/plugins/`
 
 ## 📁 Project Structure
 
-- `src/main.ts` — application entry point
+- `src/main.js` — application entry point
 - `src/App.vue` — root component
 - `src/components/` — reusable Vue components
 - `src/plugins/` — plugin registration and setup
@@ -35,10 +35,9 @@ Scaffolded with Vuetify CLI.
 ## ✨ Enabled Features
 
 - ESLint
-- Pinia
-- Vue I18n
 - Vuetify MCP
-- Vue Router
+- Pinia
+- File Router
 
 ## 💿 Install
 
@@ -66,8 +65,6 @@ yarn build
 - `yarn dev`
 - `yarn build`
 - `yarn preview`
-- `yarn build-only`
-- `yarn type-check`
 - `yarn lint`
 - `yarn lint:fix`
 
