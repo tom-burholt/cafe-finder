@@ -4,7 +4,7 @@
   <div class="cafe-list">
     <h1>The Porteño Cafe Finder</h1>
 
-    <v-card v-for="cafe in cafes" :key="cafe.id" class="cafe-card" >
+    <v-card v-for="cafe in cafes" :key="cafe.id" class="cafe-card">
       <v-img :src="randomImage(cafe.id)" height="200" cover />
       <v-card-title>{{ cafe.name }}</v-card-title>
       <div class="card-body">
@@ -28,6 +28,7 @@
 
 <script>
 import axios from "axios"
+import CafeApi from "../api/CafeApi";
 
 export default {
   name: 'Home',
@@ -51,6 +52,14 @@ export default {
       const response = await axios.get("http://localhost:8000/api/cafes/");
       this.cafes = response.data
 
+    },
+    async loadCafes(){
+      const data = await CafeApi.fetchCafes()
+      this.cafes = data.map(cafe=>({
+        id:cafe.id,
+        cafeName:cafe.name,
+        cafeAddress:cafe.address,
+      }))
     },
   },
 }

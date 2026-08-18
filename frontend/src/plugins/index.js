@@ -1,5 +1,6 @@
 import router from '../router';
-import {createPinia} from 'pinia';
+import store from '../stores/store';
+
 /**
  * plugins/index.ts
  *
@@ -12,7 +13,7 @@ import {createPinia} from 'pinia';
 import vuetify from './vuetify'
 
 export function registerPlugins (app) {
- app.use(vuetify)
- app.use(createPinia());
- app.use(router);
+    app.use(vuetify);
+    app.use(store);
+    app.use(router);
 }
