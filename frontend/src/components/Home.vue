@@ -4,6 +4,12 @@
   <div class="cafe-list">
     <h1>The Porteño Cafe Finder</h1>
 
+    <v-card>
+      <div class="card-body">
+        There are {{cafeCount}} cafes in Buenos Aires
+      </div>
+    </v-card>
+
     <v-card v-for="cafe in cafes" :key="cafe.id" class="cafe-card">
       <v-img :src="randomImage(cafe.id)" height="200" cover />
       <v-card-title>{{ cafe.name }}</v-card-title>
@@ -29,6 +35,7 @@
 <script>
 import axios from "axios"
 import CafeApi from "../api/CafeApi";
+import {Store, storeKey, useStore} from 'vuex';
 
 export default {
   name: 'Home',
@@ -41,7 +48,8 @@ export default {
   },
 
   created(){
-  this.fetchCafes()
+  this.fetchCafes(),
+  this.$store.dispatch('cafes/fetchCafes')
   },
 
   methods: {
@@ -61,6 +69,11 @@ export default {
         cafeAddress:cafe.address,
       }))
     },
+  },
+  computed: {
+    cafeCount() {
+      return this.$store.getters['cafes/cafeCount']
+    }
   },
 }
 </script>
