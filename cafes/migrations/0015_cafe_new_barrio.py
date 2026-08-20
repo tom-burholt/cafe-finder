@@ -7,13 +7,17 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('cafes', '0014_alter_cafe_options'),
+        ("cafes", "0014_alter_cafe_options"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='cafe',
-            name='new_barrio',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='cafes.barrio'),
+            model_name="cafe",
+            name="new_barrio",
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="cafes.barrio",
+            ),
         ),
     ]

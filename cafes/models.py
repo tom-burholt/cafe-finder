@@ -1,20 +1,22 @@
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
-from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 class Tag(models.Model):
-    name = models.CharField(max_length=50,unique=True)
+    name = models.CharField(max_length=50, unique=True)
 
     def __str__(self):
         return self.name
+
 
 class Barrio(models.Model):
     name = models.CharField(max_length=50, unique=True)
     comuna = models.IntegerField()
     slug = models.SlugField(max_length=100, unique=True, null=True)
-    
+
     def __str__(self):
         return f"{self.name} (Comuna {self.comuna})"
+
 
 class Cafe(models.Model):
 
@@ -24,19 +26,19 @@ class Cafe(models.Model):
         return review_count
 
     class Meta:
-          ordering = ['-name'] 
-    
+        ordering = ["-name"]
+
     has_good_medialunas = models.BooleanField(default=False)
     name = models.CharField(max_length=100)
     address = models.CharField(max_length=200)
     notes = models.TextField(blank=True)
-    recommendation_count = models.IntegerField(default = 0)
-    tag = models.ManyToManyField(Tag, related_name='cafes')
+    recommendation_count = models.IntegerField(default=0)
+    tag = models.ManyToManyField(Tag, related_name="cafes")
     barrio = models.ForeignKey(Barrio, null=False, on_delete=models.CASCADE)
-
 
     def __str__(self):
         return f"{self.name} ({self.barrio.name})"
+
 
 class Reviewer(models.Model):
     name = models.CharField(max_length=100)
@@ -44,22 +46,27 @@ class Reviewer(models.Model):
 
     def __str__(self):
         return f"{self.name} ({self.join_date})"
-     
+
+
 class Review(models.Model):
-    cafe = models.ForeignKey(Cafe, on_delete=models.CASCADE,related_name='reviews')
+    cafe = models.ForeignKey(Cafe, on_delete=models.CASCADE, related_name="reviews")
     reviewer = models.ForeignKey(Reviewer, on_delete=models.CASCADE)
     comment = models.TextField()
     rating = models.IntegerField(
-          validators=[MinValueValidator(1), MaxValueValidator(5)])
+        validators=[MinValueValidator(1), MaxValueValidator(5)]
+    )
 
     def __str__(self):
         return f"Review for {self.cafe.name} by {self.reviewer.name}"
 
+
 class Dish(models.Model):
     name = models.CharField(max_length=100)
-    price = models.DecimalField(max_digits=6,decimal_places=2)
+    price = models.DecimalField(max_digits=6, decimal_places=2)
     is_vegan = models.BooleanField(default=False)
-    cafe = models.ForeignKey(Cafe, null=False, on_delete=models.CASCADE, related_name='dishes')
+    cafe = models.ForeignKey(
+        Cafe, null=False, on_delete=models.CASCADE, related_name="dishes"
+    )
 
     def __str__(self):
-            return f"{self.name} - {self.cafe.name}"
+        return f"{self.name} - {self.cafe.name}"

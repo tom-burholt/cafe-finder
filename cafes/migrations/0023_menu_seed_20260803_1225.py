@@ -2,25 +2,26 @@
 
 from django.db import migrations
 
+
 def seed_menu(apps, schema_editor):
-    Cafe = apps.get_model('cafes', 'Cafe')
-    Dish = apps.get_model('cafes', 'Dish')
+    Cafe = apps.get_model("cafes", "Cafe")
+    Dish = apps.get_model("cafes", "Dish")
 
     for cafe in Cafe.objects.all():
         Dish.objects.create(
             cafe=cafe,
-            name='House Coffee',
+            name="House Coffee",
             price=2.50,
             is_vegan=True,
         )
 
 
-
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('cafes', '0022_dish'),
+        ("cafes", "0022_dish"),
     ]
 
-    operations = [migrations.RunPython(seed_menu),
+    operations = [
+        migrations.RunPython(seed_menu),
     ]

@@ -7,18 +7,33 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('cafes', '0021_auto_20260730_1452'),
+        ("cafes", "0021_auto_20260730_1452"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Dish',
+            name="Dish",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100)),
-                ('price', models.DecimalField(decimal_places=2, max_digits=6)),
-                ('is_vegan', models.BooleanField(default=False)),
-                ('cafe', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='dishes', to='cafes.cafe')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=100)),
+                ("price", models.DecimalField(decimal_places=2, max_digits=6)),
+                ("is_vegan", models.BooleanField(default=False)),
+                (
+                    "cafe",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="dishes",
+                        to="cafes.cafe",
+                    ),
+                ),
             ],
         ),
     ]

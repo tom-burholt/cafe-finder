@@ -7,19 +7,26 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Cafe',
+            name="Cafe",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100)),
-                ('barrio', models.CharField(max_length=50)),
-                ('address', models.CharField(max_length=200)),
-                ('rating', models.IntegerField()),
-                ('has_good_medialunas', models.BooleanField(default=False)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=100)),
+                ("barrio", models.CharField(max_length=50)),
+                ("address", models.CharField(max_length=200)),
+                ("rating", models.IntegerField()),
+                ("has_good_medialunas", models.BooleanField(default=False)),
             ],
         ),
     ]

@@ -3,23 +3,25 @@
 from django.db import migrations
 from django.utils.text import slugify
 
-def fill_slugs(apps,schema_editor):
+
+def fill_slugs(apps, schema_editor):
     # get barrio model
-    Barrio = apps.get_model('cafes','Barrio')
+    Barrio = apps.get_model("cafes", "Barrio")
     # loop through existing barrios
     for barrio in Barrio.objects.all():
-    # create new field value for each
+        # create new field value for each
         barrio.new_slug = slugify(barrio.name)
         barrio.save()
     # create Almagro and fill in
-    create = Barrio.objects.get_or_create(name='Almagro', slug=slugify('Almagro'),defaults={"comuna":5})
+    create = Barrio.objects.get_or_create(
+        name="Almagro", slug=slugify("Almagro"), defaults={"comuna": 5}
+    )
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('cafes', '0020_barrio_slug'),
+        ("cafes", "0020_barrio_slug"),
     ]
 
-    operations = [
-    ]
+    operations = []

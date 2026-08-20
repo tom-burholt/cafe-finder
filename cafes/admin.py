@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Cafe, Barrio, Reviewer, Review, Tag, Dish
+
+from .models import Barrio, Cafe, Dish, Review, Reviewer, Tag
 
 admin.site.register(Cafe)
 admin.site.register(Barrio)

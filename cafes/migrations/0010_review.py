@@ -8,18 +8,44 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('cafes', '0009_delete_comment'),
+        ("cafes", "0009_delete_comment"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Review',
+            name="Review",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('comment', models.TextField()),
-                ('rating', models.IntegerField(validators=[django.core.validators.MinValueValidator(1), django.core.validators.MaxValueValidator(5)])),
-                ('cafe', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='cafes.cafe')),
-                ('reviewer', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='cafes.reviewer')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("comment", models.TextField()),
+                (
+                    "rating",
+                    models.IntegerField(
+                        validators=[
+                            django.core.validators.MinValueValidator(1),
+                            django.core.validators.MaxValueValidator(5),
+                        ]
+                    ),
+                ),
+                (
+                    "cafe",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="cafes.cafe"
+                    ),
+                ),
+                (
+                    "reviewer",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="cafes.reviewer"
+                    ),
+                ),
             ],
         ),
     ]

@@ -7,17 +7,22 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('cafes', '0002_alter_cafe_barrio'),
+        ("cafes", "0002_alter_cafe_barrio"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='cafe',
-            options={'ordering': ['-rating', 'name']},
+            name="cafe",
+            options={"ordering": ["-rating", "name"]},
         ),
         migrations.AlterField(
-            model_name='cafe',
-            name='rating',
-            field=models.IntegerField(validators=[django.core.validators.MinValueValidator(1), django.core.validators.MaxValueValidator(5)]),
+            model_name="cafe",
+            name="rating",
+            field=models.IntegerField(
+                validators=[
+                    django.core.validators.MinValueValidator(1),
+                    django.core.validators.MaxValueValidator(5),
+                ]
+            ),
         ),
     ]

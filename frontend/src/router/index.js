@@ -32,6 +32,10 @@ const routes = [
         beforeEnter: (to,from) => {
           console.log("Welcome Dog")
         }},
+         {path: 'about', component : About,
+        beforeEnter: (to,from, next) => {
+          console.log("Welcome Dog")
+        }},
     ]
   }
 ]

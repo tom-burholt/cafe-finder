@@ -6,28 +6,36 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('cafes', '0011_cafe_recommendation_count'),
+        ("cafes", "0011_cafe_recommendation_count"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Tag',
+            name="Tag",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=50, unique=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=50, unique=True)),
             ],
         ),
         migrations.AlterModelOptions(
-            name='cafe',
-            options={'ordering': ['name']},
+            name="cafe",
+            options={"ordering": ["name"]},
         ),
         migrations.RemoveField(
-            model_name='cafe',
-            name='rating',
+            model_name="cafe",
+            name="rating",
         ),
         migrations.AddField(
-            model_name='cafe',
-            name='tag',
-            field=models.ManyToManyField(related_name='cafes', to='cafes.tag'),
+            model_name="cafe",
+            name="tag",
+            field=models.ManyToManyField(related_name="cafes", to="cafes.tag"),
         ),
     ]

@@ -7,27 +7,53 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('cafes', '0006_cafe_notes'),
+        ("cafes", "0006_cafe_notes"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Reviewer',
+            name="Reviewer",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=100)),
             ],
         ),
         migrations.CreateModel(
-            name='Comment',
+            name="Comment",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('comment', models.TextField()),
-                ('cafe', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='cafes.cafe')),
-                ('reviewer_name', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='cafes.reviewer')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("comment", models.TextField()),
+                (
+                    "cafe",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="cafes.cafe"
+                    ),
+                ),
+                (
+                    "reviewer_name",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="cafes.reviewer"
+                    ),
+                ),
             ],
         ),
         migrations.DeleteModel(
-            name='Review',
+            name="Review",
         ),
     ]

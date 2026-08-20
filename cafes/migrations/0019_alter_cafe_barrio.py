@@ -7,14 +7,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('cafes', '0018_rename_new_barrio_cafe_barrio'),
+        ("cafes", "0018_rename_new_barrio_cafe_barrio"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='cafe',
-            name='barrio',
-            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='cafes.barrio'),
+            model_name="cafe",
+            name="barrio",
+            field=models.ForeignKey(
+                default=1,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="cafes.barrio",
+            ),
             preserve_default=False,
         ),
     ]

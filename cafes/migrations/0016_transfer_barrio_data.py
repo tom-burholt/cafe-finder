@@ -4,8 +4,8 @@ from django.db import migrations
 
 
 def transfer_data(apps, schema_editor):
-    Cafe = apps.get_model('cafes', 'Cafe')
-    Barrio = apps.get_model('cafes', 'Barrio')
+    Cafe = apps.get_model("cafes", "Cafe")
+    Barrio = apps.get_model("cafes", "Barrio")
 
     for cafe in Cafe.objects.all():
         name_str = cafe.get_barrio_display()
@@ -17,7 +17,7 @@ def transfer_data(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('cafes', '0015_cafe_new_barrio'),
+        ("cafes", "0015_cafe_new_barrio"),
     ]
 
     operations = [

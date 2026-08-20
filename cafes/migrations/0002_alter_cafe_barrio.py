@@ -6,13 +6,25 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('cafes', '0001_initial'),
+        ("cafes", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='cafe',
-            name='barrio',
-            field=models.CharField(choices=[('PAL', 'Palermo'), ('STL', 'San Telmo'), ('REC', 'Recoleta'), ('BOC', 'La Boca'), ('BLG', 'Belgrano'), ('NUZ', 'Nuñez'), ('CLG', 'Colegiales')], default='PAL', max_length=3),
+            model_name="cafe",
+            name="barrio",
+            field=models.CharField(
+                choices=[
+                    ("PAL", "Palermo"),
+                    ("STL", "San Telmo"),
+                    ("REC", "Recoleta"),
+                    ("BOC", "La Boca"),
+                    ("BLG", "Belgrano"),
+                    ("NUZ", "Nuñez"),
+                    ("CLG", "Colegiales"),
+                ],
+                default="PAL",
+                max_length=3,
+            ),
         ),
     ]
