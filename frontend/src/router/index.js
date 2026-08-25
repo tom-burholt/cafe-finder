@@ -1,10 +1,3 @@
-/**
- * router/index.js
- *
- * Automatic routes for ./src/pages/*.vue
- */
-
-// Composables
 import { createRouter, createWebHistory } from 'vue-router'
 import About from '@/components/About.vue'
 import Contact from '@/components/Contact.vue'
@@ -17,25 +10,38 @@ const routes = [
     path: '/',
     component: DefaultLayout,
     children: [
-      {path: '', component: Home,  beforeEnter: (to,from) => {
-          console.log("Welcome Zhen Cai")
-        }},
-      {path: 'about', component: About,
-        beforeEnter: (to,from) => {
-          console.log("Welcome Dhruv Kumar")
-        }},
-      {path: 'contact', component: Contact,
-        beforeEnter: (to,from) => {
-          console.log("Welcome Adam Blake")
-        }},
-      {path: 'historyofcoffee', component : Historyofcoffee,
-        beforeEnter: (to,from) => {
-          console.log("Welcome Dog")
-        }},
-         {path: 'about', component : About,
-        beforeEnter: (to,from, next) => {
-          console.log("Welcome Dog")
-        }},
+      {
+        path: '',
+        name: 'home',
+        component: Home,
+        beforeEnter: (to, from) => {
+          console.log('Welcome Zhen Cai')
+        },
+      },
+      {
+        path: 'about',
+        name: 'about',
+        component: About,
+        beforeEnter: (to, from) => {
+          console.log('Welcome Dhruv Kumar')
+        },
+      },
+      {
+        path: 'contact',
+        name: 'contact',
+        component: Contact,
+        beforeEnter: (to, from) => {
+          console.log('Welcome Adam Blake')
+        },
+      },
+      {
+        path: 'historyofcoffee',
+        name: 'historyofcoffee',
+        component: Historyofcoffee,
+        beforeEnter: (to, from) => {
+          console.log('Welcome Dog')
+        },
+      },
     ]
   }
 ]

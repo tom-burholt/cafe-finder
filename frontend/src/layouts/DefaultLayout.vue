@@ -7,6 +7,10 @@
       <router-link to="/contact">Contact</router-link>
     </nav>
 
+    <div class="spacer">
+
+    </div>
+
     <!-- Whichever child route matched renders here -->
     <main class="page-content">
       <router-view />
@@ -40,5 +44,8 @@
   text-align: center;
   background-color: black;
   color: white;
+}
+.spacer{
+  height: 50px;
 }
 </style>
