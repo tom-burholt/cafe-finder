@@ -16,4 +16,5 @@ router.register(r"reviewers", views.ReviewerViewSet, basename="reviewer")
 router.register(r"reviews", views.ReviewViewSet, basename="review")
 
 
-urlpatterns = [path("admin/", admin.site.urls), path("api/", include(router.urls))]
+urlpatterns = [path("admin/", admin.site.urls), 
+               path("api/", include(router.urls))]
